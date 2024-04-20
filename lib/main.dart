@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:autopass/bottom_navigation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: AutoPassApp()));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AutoPassApp extends StatelessWidget {
+  const AutoPassApp({super.key});
 
   // This widget is the root of your application.
   @override

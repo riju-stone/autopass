@@ -6,11 +6,13 @@ class LottieIcon extends StatefulWidget {
       {super.key,
       required this.iconName,
       required this.height,
-      required this.width});
+      required this.width,
+      required this.onTap});
 
   final String iconName;
   final double height;
   final double width;
+  final Function onTap;
 
   @override
   State<LottieIcon> createState() => _LottieIconState();
@@ -33,12 +35,13 @@ class _LottieIconState extends State<LottieIcon> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
+    return GestureDetector(
+      onTap: () {
+        widget.onTap();
         _controller.reset();
         _controller.forward();
       },
-      icon: Lottie.asset('assets/icons/animated/${widget.iconName}.json',
+      child: Lottie.asset('assets/icons/animated/${widget.iconName}.json',
           height: widget.height,
           width: widget.width,
           controller: _controller, onLoaded: (composition) {
