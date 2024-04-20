@@ -25,7 +25,7 @@ class _TabIndicatorState extends State<TabIndicator>
   Widget build(BuildContext context) {
     return Container(
       height: 12,
-      padding: const EdgeInsets.symmetric(horizontal: 28),
+      padding: const EdgeInsets.symmetric(horizontal: 25),
       decoration: BoxDecoration(
         color: widget.backgroundColor,
       ),
@@ -34,9 +34,11 @@ class _TabIndicatorState extends State<TabIndicator>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           for (int i = 0; i < 4; i++)
-            Container(
+            AnimatedContainer(
               height: 4,
-              width: 30,
+              width: i == widget.selectedIndex ? 25 : 0,
+              duration: const Duration(milliseconds: 1500),
+              curve: Curves.fastLinearToSlowEaseIn,
               decoration: BoxDecoration(
                 color: i == widget.selectedIndex
                     ? widget.selectedTabColor

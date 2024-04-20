@@ -42,7 +42,7 @@ class BottomNavigation extends StatelessWidget {
         child: Container(
           height: 80,
           margin: EdgeInsets.only(
-              left: 25, right: 25, bottom: Platform.isAndroid == true ? 20 : 5),
+              left: 40, right: 40, bottom: Platform.isAndroid == true ? 20 : 0),
           child: Consumer(
             builder: (context, ref, child) {
               final currentIndex = ref.watch(_navIndexProvider);
