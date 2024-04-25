@@ -1,4 +1,5 @@
 import 'dart:io' show Platform;
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -31,9 +32,13 @@ class BottomNavigation extends StatelessWidget {
       body: Consumer(
         builder: (context, ref, child) {
           final currentIndex = ref.watch(_navIndexProvider);
-          return IndexedStack(
-            index: currentIndex,
-            children: screens,
+          return PageTransitionSwitcher(
+            transitionBuilder: (child, primaryAnimation, secondaryAnimation) =>
+                FadeScaleTransition(
+              animation: primaryAnimation,
+              child: child,
+            ),
+            child: screens[currentIndex],
           );
         },
       ),

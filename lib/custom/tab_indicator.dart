@@ -25,7 +25,7 @@ class _TabIndicatorState extends State<TabIndicator>
   Widget build(BuildContext context) {
     return Container(
       height: 12,
-      padding: const EdgeInsets.symmetric(horizontal: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 28),
       decoration: BoxDecoration(
         color: widget.backgroundColor,
       ),
