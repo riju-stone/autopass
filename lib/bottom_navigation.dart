@@ -27,6 +27,7 @@ class BottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: darkBackgroundColor,
       body: Consumer(
@@ -46,8 +47,8 @@ class BottomNavigation extends StatelessWidget {
       floatingActionButton: SafeArea(
         child: Container(
           height: 80,
-          margin: EdgeInsets.only(
-              left: 40, right: 40, bottom: Platform.isAndroid == true ? 20 : 0),
+          width: screenWidth - 80,
+          margin: EdgeInsets.only(bottom: Platform.isAndroid == true ? 20 : 0),
           child: Consumer(
             builder: (context, ref, child) {
               final currentIndex = ref.watch(_navIndexProvider);
@@ -55,7 +56,7 @@ class BottomNavigation extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     BottomNavigationBar(
                       type: BottomNavigationBarType.fixed,
@@ -73,6 +74,16 @@ class BottomNavigation extends StatelessWidget {
                         BottomNavigationBarItem(
                           label: "Home",
                           icon: LottieIcon(
+                            iconName: "home-inactive",
+                            height: 32,
+                            width: 32,
+                            onTap: () {
+                              ref
+                                  .read(_navIndexProvider.notifier)
+                                  .update((state) => 0);
+                            },
+                          ),
+                          activeIcon: LottieIcon(
                             iconName: "home",
                             height: 32,
                             width: 32,
@@ -86,6 +97,16 @@ class BottomNavigation extends StatelessWidget {
                         BottomNavigationBarItem(
                           label: "Vault",
                           icon: LottieIcon(
+                            iconName: "vault-inactive",
+                            height: 34,
+                            width: 34,
+                            onTap: () {
+                              ref
+                                  .read(_navIndexProvider.notifier)
+                                  .update((state) => 1);
+                            },
+                          ),
+                          activeIcon: LottieIcon(
                             iconName: "vault",
                             height: 34,
                             width: 34,
@@ -99,6 +120,16 @@ class BottomNavigation extends StatelessWidget {
                         BottomNavigationBarItem(
                           label: "User",
                           icon: LottieIcon(
+                            iconName: "user-inactive",
+                            height: 32,
+                            width: 32,
+                            onTap: () {
+                              ref
+                                  .read(_navIndexProvider.notifier)
+                                  .update((state) => 2);
+                            },
+                          ),
+                          activeIcon: LottieIcon(
                             iconName: "user",
                             height: 32,
                             width: 32,
@@ -112,6 +143,16 @@ class BottomNavigation extends StatelessWidget {
                         BottomNavigationBarItem(
                           label: "Settings",
                           icon: LottieIcon(
+                            iconName: "settings-inactive",
+                            height: 30,
+                            width: 30,
+                            onTap: () {
+                              ref
+                                  .read(_navIndexProvider.notifier)
+                                  .update((state) => 3);
+                            },
+                          ),
+                          activeIcon: LottieIcon(
                             iconName: "settings",
                             height: 30,
                             width: 30,
@@ -126,6 +167,7 @@ class BottomNavigation extends StatelessWidget {
                     ),
                     TabIndicator(
                       selectedIndex: currentIndex,
+                      containerWidth: screenWidth - 80,
                       backgroundColor: darkBlueColor,
                       selectedTabColor: Colors.white.withOpacity(0.6),
                       unselectedTabColor: darkBlueColor,

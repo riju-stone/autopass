@@ -41,12 +41,23 @@ class _LottieIconState extends State<LottieIcon> with TickerProviderStateMixin {
         _controller.reset();
         _controller.forward();
       },
-      child: Lottie.asset('assets/icons/animated/${widget.iconName}.json',
-          height: widget.height,
-          width: widget.width,
-          controller: _controller, onLoaded: (composition) {
-        _controller.duration = composition.duration;
-      }),
+      child: Lottie.asset(
+        'assets/icons/animated/${widget.iconName}.json',
+        height: widget.height,
+        width: widget.width,
+        controller: _controller,
+        onLoaded: (composition) {
+          _controller.duration = composition.duration;
+        },
+        delegates: LottieDelegates(
+          values: [
+            ValueDelegate.color(
+              const ['Outlines', '**', "Stroke 1"],
+              value: Colors.red,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
