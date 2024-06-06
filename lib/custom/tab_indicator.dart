@@ -38,8 +38,8 @@ class _TabIndicatorState extends State<TabIndicator>
             width: widget.containerWidth * 0.10,
             left: widget.containerWidth * (widget.selectedIndex + 1) * 0.25 -
                 (widget.containerWidth * 0.176),
-            curve: Curves.easeInOut,
-            duration: const Duration(milliseconds: 200),
+            curve: Curves.elasticOut,
+            duration: const Duration(milliseconds: 800),
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
